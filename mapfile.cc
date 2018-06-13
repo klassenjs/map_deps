@@ -123,7 +123,7 @@ void Mapfile::add_file(const boost::filesystem::path &p, const std::string &type
 {
   // Workaround MapServer bug of not keeping full path for FONTSET
   // In the default mapfile even thought it does for everything else.
-  if (std::getenv("MS_DEFAULT_MAPFILE") != NULL) {
+  if (std::getenv("MS_DEFAULT_MAPFILE") != NULL && type == "fontset") {
     auto default_path = boost::filesystem::path(std::getenv("MS_DEFAULT_MAPFILE")).parent_path() / p;
     if (boost::filesystem::exists(default_path)) {
       auto canonical_path = boost::filesystem::canonical(default_path);
