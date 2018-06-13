@@ -282,7 +282,7 @@ int Mapfile::process_mapfile()
 	  auto klass = layer->_class[c];
 	  if (layer->_class[c]->_template)
 	    add_file(klass->_template, "layer.class.template");
-	
+
 	  for (int s = 0; s < klass->numstyles; s++) {
 	    auto style = klass->styles[s];
 	    if (style->symbolname)
@@ -293,6 +293,12 @@ int Mapfile::process_mapfile()
 	    auto label = klass->labels[l];
 	    if (label->font)
 	      add_font(label->font);
+
+	    for (int s = 0; s < label->numstyles; s++) {
+	      auto style = label->styles[s];
+	      if (style->symbolname)
+	        add_symbol(style->symbolname);
+	    }
 	  }
 	
 	}
